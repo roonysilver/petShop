@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="adminLayout::head">
+</head>
+
+<body class="">
+<div class="wrapper ">
+    <div th:replace="adminLayout::slidebar"></div>
+    <div class="main-panel">
+        <nav th:replace="adminLayout::navbar"></nav>
+        <!-- End Navbar -->
+        <!-- <div class="panel-header panel-header-sm">
+
+
+  </div> -->
+        <div class="content">
+            <div class="col-md-12">
+                <div class="card card-user">
+                    <div class="card-header">
+                        <h5 class="card-title">Update Customer</h5>
+                    </div>
+                    <div class="container">
+                        <button type="button" class="btn btn-primary"><a href="/tables" style="color: white">Customer List</a></button>
+                    </div>
+                    <div class="card-body">
+                        <th:block th:if="${message}">
+                            <p th:text="${message}"></p>
+                        </th:block>
+                        <form action="#" th:action="@{/edit-customer}" th:object="${customer}" method="POST">
+                            <input th:type="hidden" name="id" th:field="*{id}">
+                            <div class="row">
+                                <div class="col-md-5 pr-1">
+                                    <div class="form-group">
+                                        <label>Customer Name</label>
+                                        <input type="text" class="form-control" th:field="*{name}"/>
+                                        <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Phone Number</label>
+                                        <input type="text" class="form-control" th:field="*{number}"/>
+                                        <div th:if="${#fields.hasErrors('number')}" th:errors="*{number}">Name Error</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="update ml-auto mr-auto">
+                                    <button type="submit" class="btn btn-primary btn-round" value="Update">Update</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer class="footer footer-black  footer-white ">
+            <div class="container-fluid">
+                <div class="row">
+                    <nav class="footer-nav">
+                        <ul>
+                            <li>
+                                <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>
+                            </li>
+                            <li>
+                                <a href="http://blog.creative-tim.com/" target="_blank">Blog</a>
+                            </li>
+                            <li>
+                                <a href="https://www.creative-tim.com/license" target="_blank">Licenses</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="credits ml-auto">
+              <span class="copyright">
+                ©
+                <script>
+                  document.write(new Date().getFullYear())
+                </script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
+              </span>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+<!--   Core JS Files   -->
+<script src="/assets/js/core/jquery.min.js"></script>
+<script src="/assets/js/core/popper.min.js"></script>
+<script src="/assets/js/core/bootstrap.min.js"></script>
+<script src="/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<!--  Google Maps Plugin    -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!-- Chart JS -->
+<script src="/assets/js/plugins/chartjs.min.js"></script>
+<!--  Notifications Plugin    -->
+<script src="/assets/js/plugins/bootstrap-notify.js"></script>
+<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="/assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
+<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+<script src="/assets/demo/demo.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="adminLayout::head">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous"></head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</head>
+
+<body class="">
+<div class="wrapper ">
+  <div th:replace="adminLayout::slidebar"></div>
+  <div class="main-panel">
+    <nav th:replace="adminLayout::navbar"></nav>
+      <!-- End Navbar -->
+      <!-- <div class="panel-header panel-header-sm">
+
+
+</div> -->
+      <div class="content">
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Pet Type</h2>
+              </div>
+                <div class="container">
+                  <button type="button" class="btn btn-primary btn-round"><a href="/create-petType" style="color: white">Create new Pet Type</a></button>
+                </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                      <th>
+                        Name
+                      </th>
+                      <th>
+                        Edit
+                      </th>
+                      <th>
+                        Delete
+                      </th>
+                    </thead>
+                    <tbody>
+                    <div class="container">
+                      <th:block th:each="petType : ${petTypes}">
+                        <tr>
+                          <td th:text="${petType.name}"></td>
+                          <td><a th:href="@{/edit-petType/__${petType.id}__ }"><i class="fa fa-edit" style="font-size: 28px"></i></a></td>
+                          <td><a th:href="@{/delete-petType/__${petType.id}__ }"><i class="fa fa-trash" style="font-size: 28px" ></i></a></td>
+                        </tr>
+                      </th:block>
+                    </div>
+                    </tbody>
+                  </table>
+                  <div>
+                    <a th:href="@{'/tables'(page=${petTypes.number - 1})}" th:if="${petTypes.hasPrevious()}">Previous</a>
+                    <span th:text="${petTypes.number + 1}"></span>/<span th:text="${petTypes.totalPages}"></span>
+                    <a th:href="@{'/tables'(page=${petTypes.number + 1})}" th:if="${petTypes.hasNext()}">Next</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Pet Kind</h2>
+              </div>
+              <div class="container">
+                <button type="button" class="btn btn-primary btn-round" ><a href="/create-petKind" style="color: white">Create new Pet Kind</a></button>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                    <th>
+                      Name
+                    </th>
+                    <th>
+                      Status
+                    </th>
+                    <th>
+                      Type
+                    </th>
+                    <th>
+                      Edit
+                    </th>
+                    <th>
+                      Delete
+                    </th>
+                    </thead>
+                    <tbody>
+                    <div class="container">
+                      <th:block th:each="petKind : ${petKinds}">
+                        <tr>
+                          <td th:text="${petKind.name}"></td>
+                          <td th:text="${petKind.status}"></td>
+                          <td th:text="${petKind.petType.name}"></td>
+                          <td><a th:href="@{/edit-petKind/__${petKind.id}__ }"><i class="fa fa-edit" style="font-size: 28px"></i></a></td>
+                          <td><a th:href="@{/delete-petKind/__${petKind.id}__ }"><i class="fa fa-trash" style="font-size: 28px" ></i></a></td>
+                        </tr>
+                      </th:block>
+                    </div>
+                    </tbody>
+                  </table>
+                  <div>
+                    <a th:href="@{'/tables'(page=${petKinds.number - 1})}" th:if="${petKinds.hasPrevious()}">Previous</a>
+                    <span th:text="${petKinds.number + 1}"></span>/<span th:text="${petKinds.totalPages}"></span>
+                    <a th:href="@{'/tables'(page=${petKinds.number + 1})}" th:if="${petKinds.hasNext()}">Next</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Customers</h2>
+              </div>
+              <div class="container">
+                <button type="button" class="btn btn-primary btn-round"><a href="/create-customer" style="color: white">Create new Customer</a></button>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                    <th>
+                      Name
+                    </th>
+                    <th>
+                      Number
+                    </th>
+                    <th>
+                      Edit
+                    </th>
+                    <th>
+                      Delete
+                    </th>
+                    </thead>
+                    <tbody>
+                    <div class="container">
+                      <th:block th:each="customer : ${customers}">
+                        <tr>
+                          <td th:text="${customer.name}"></td>
+                          <td th:text="${customer.number}"></td>
+                          <td><a th:href="@{/edit-customer/__${customer.id}__ }"><i class="fa fa-edit" style="font-size: 28px"></i></a></td>
+                          <td><a th:href="@{/delete-customer/__${customer.id}__ }"><i class="fa fa-trash" style="font-size: 28px" ></i></a></td>
+                        </tr>
+                      </th:block>
+                    </div>
+                    </tbody>
+                  </table>
+                  <div>
+                    <a th:href="@{'/tables'(page=${customers.number - 1})}" th:if="${customers.hasPrevious()}">Previous</a>
+                    <span th:text="${customers.number + 1}"></span>/<span th:text="${customers.totalPages}"></span>
+                    <a th:href="@{'/tables'(page=${customers.number + 1})}" th:if="${customers.hasNext()}">Next</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">MyTeams</h2>
+              </div>
+              <div class="container">
+                <button type="button" class="btn btn-primary btn-round"><a href="/create-myTeam" style="color: white">Create new Employee</a></button>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                    <th>
+                      Name
+                    </th>
+                    <th>
+                      Number
+                    </th>
+                    <th>
+                      Edit
+                    </th>
+                    <th>
+                      Delete
+                    </th>
+                    </thead>
+                    <tbody>
+                    <div class="container">
+                      <th:block th:each="myteam : ${myTeams}">
+                        <tr>
+                          <td th:text="${myteam.name}"></td>
+                          <td th:text="${myteam.number}"></td>
+                          <td><a th:href="@{/edit-myTeam/__${myteam.id}__ }"><i class="fa fa-edit" style="font-size: 28px"></i></a></td>
+                          <td><a th:href="@{/delete-myTeam/__${myteam.id}__ }"><i class="fa fa-trash" style="font-size: 28px" ></i></a></td>
+                        </tr>
+                      </th:block>
+                    </div>
+                    </tbody>
+                  </table>
+                  <div>
+                    <a th:href="@{'/tables'(page=${myTeams.number - 1})}" th:if="${myTeams.hasPrevious()}">Previous</a>
+                    <span th:text="${myTeams.number + 1}"></span>/<span th:text="${myTeams.totalPages}"></span>
+                    <a th:href="@{'/tables'(page=${myTeams.number + 1})}" th:if="${myTeams.hasNext()}">Next</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Care Type</h2>
+              </div>
+              <div class="container">
+                <button type="button" class="btn btn-primary btn-round"><a href="/create-careType" style="color: white">Create new CareType</a></button>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                    <th>
+                      Name
+                    </th>
+                    <th>
+                      Edit
+                    </th>
+                    <th>
+                      Delete
+                    </th>
+                    </thead>
+                    <tbody>
+                    <div class="container">
+                      <th:block th:each="caretype : ${careTypes}">
+                        <tr>
+                          <td th:text="${caretype.name}"></td>
+                          <td><a th:href="@{/edit-careType/__${caretype.id}__ }"><i class="fa fa-edit" style="font-size: 28px"></i></a></td>
+                          <td><a th:href="@{/delete-careType/__${caretype.id}__ }"><i class="fa fa-trash" style="font-size: 28px" ></i></a></td>
+                        </tr>
+                      </th:block>
+                    </div>
+                    </tbody>
+                  </table>
+                  <div>
+                    <a th:href="@{'/tables'(page=${careTypes.number - 1})}" th:if="${careTypes.hasPrevious()}">Previous</a>
+                    <span th:text="${careTypes.number + 1}"></span>/<span th:text="${careTypes.totalPages}"></span>
+                    <a th:href="@{'/tables'(page=${careTypes.number + 1})}" th:if="${careTypes.hasNext()}">Next</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-md-12">
+            <div class="card">
+              <div class="card-header">
+                <h2 class="card-title">Care Detail</h2>
+              </div>
+              <div class="container">
+                <button type="button" class="btn btn-primary btn-round"><a href="/create-careDetail" style="color: white">Create new Care Detail</a></button>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table">
+                    <thead class=" text-primary">
+                    <th>
+                      Name
+                    </th>
+                    <th>
+                      Price
+                    </th>
+                    <th>
+                      Time
+                    </th>
+                    <th>Type</th>
+                    <th>
+                      Edit
+                    </th>
+                    <th>
+                      Delete
+                    </th>
+                    </thead>
+                    <tbody>
+                    <div class="container">
+                      <th:block th:each="careDetail : ${careDetails}">
+                        <tr>
+                          <td th:text="${careDetail.name}"></td>
+                          <td th:text="${careDetail.price}"></td>
+                          <td th:text="${careDetail.time}"></td>
+                          <td th:text="${careDetail.careType.name}"></td>
+                          <td><a th:href="@{/edit-careDetail/__${careDetail.id}__ }"><i class="fa fa-edit" style="font-size: 28px"></i></a></td>
+                          <td><a th:href="@{/delete-careDetail/__${careDetail.id}__ }"><i class="fa fa-trash" style="font-size: 28px" ></i></a></td>
+                        </tr>
+                      </th:block>
+                    </div>
+                    </tbody>
+                  </table>
+                  <div>
+                    <a th:href="@{'/tables'(page=${careDetails.number - 1})}" th:if="${careDetails.hasPrevious()}">Previous</a>
+                    <span th:text="${careDetails.number + 1}"></span>/<span th:text="${careDetails.totalPages}"></span>
+                    <a th:href="@{'/tables'(page=${careDetails.number + 1})}" th:if="${careDetails.hasNext()}">Next</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+      <footer class="footer footer-black  footer-white ">
+        <div class="container-fluid">
+          <div class="row">
+            <nav class="footer-nav">
+              <ul>
+                <li>
+                  <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>
+                </li>
+                <li>
+                  <a href="http://blog.creative-tim.com/" target="_blank">Blog</a>
+                </li>
+                <li>
+                  <a href="https://www.creative-tim.com/license" target="_blank">Licenses</a>
+                </li>
+              </ul>
+            </nav>
+            <div class="credits ml-auto">
+              <span class="copyright">
+                ©
+                <script>
+                  document.write(new Date().getFullYear())
+                </script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
+              </span>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </div>
+  <!--   Core JS Files   -->
+  <script src="/assets/js/core/jquery.min.js"></script>
+  <script src="/assets/js/core/popper.min.js"></script>
+  <script src="/assets/js/core/bootstrap.min.js"></script>
+  <script src="/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+  <!--  Google Maps Plugin    -->
+  <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+  <!-- Chart JS -->
+  <script src="/assets/js/plugins/chartjs.min.js"></script>
+  <!--  Notifications Plugin    -->
+  <script src="/assets/js/plugins/bootstrap-notify.js"></script>
+  <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+  <script src="/assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
+  <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+  <script src="/assets/demo/demo.js"></script>
+</body>
+
+</html>
