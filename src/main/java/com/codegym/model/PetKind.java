@@ -16,6 +16,18 @@ public class PetKind implements Validator {
     private Long id;
     private String name;
     private String status;
+    private boolean softDelete;
+
+    public PetKind() {
+    }
+
+    public boolean isSoftDelete() {
+        return softDelete;
+    }
+
+    public void setSoftDelete(boolean softDelete) {
+        this.softDelete = softDelete;
+    }
 
     @ManyToOne
     @JoinColumn(name = "petType_id")
@@ -75,11 +87,11 @@ public class PetKind implements Validator {
         String kindName = petKind.getName();
         String status = petKind.getStatus();
         ValidationUtils.rejectIfEmpty(errors, "name", "kindName.empty");
-        if (!kindName.matches("^$|[A-Za-z]*$")){
+        if (!kindName.matches("^[a-zA-ZÀ-ỹ-\\s]+$")){
             errors.rejectValue("name","kindName.matches");
         }
         ValidationUtils.rejectIfEmpty(errors, "status", "status.empty");
-        if (!status.matches("^$|[A-Za-z]*$")){
+        if (!status.matches("^[a-zA-ZÀ-ỹ-\\s]+$")){
             errors.rejectValue("status","status.matches");
         }
     }

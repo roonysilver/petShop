@@ -2,7 +2,7 @@
 	<html xmlns:th="http://www.thymeleaf.org" lang="en">
 	<head th:replace="layout::head">
 
-		</head>
+		<title>Cat</title></head>
 		<body>
 			  <header th:replace="layout::header">
 			  </header><!-- #header -->
@@ -29,7 +29,7 @@
 					<div class="row">
 						<div class="col-lg-3 col-md-6">
 							<div class="single-cat-list">
-							  <img src="img/ct1.jpg" alt="" class="img-fluid">
+							  <img src="/assets/img/ct1.jpg" alt="" class="img-fluid">
 							  <div class="overlay">
 							    <div class="text">Siamese Cat</div>
 							  </div>
@@ -37,7 +37,7 @@
 						</div>
 						<div class="col-lg-3 col-md-6">
 							<div class="single-cat-list">
-							  <img src="img/ct2.jpg" alt="" class="img-fluid">
+							  <img src="/assets/img/ct2.jpg" alt="" class="img-fluid">
 							  <div class="overlay">
 							    <div class="text">Siamese Cat</div>
 							  </div>
@@ -45,7 +45,7 @@
 						</div>
 						<div class="col-lg-3 col-md-6">
 							<div class="single-cat-list">
-							  <img src="img/ct3.jpg" alt="" class="img-fluid">
+							  <img src="/assets/img/ct3.jpg" alt="" class="img-fluid">
 							  <div class="overlay">
 							    <div class="text">Siamese Cat</div>
 							  </div>
@@ -53,7 +53,7 @@
 						</div>
 						<div class="col-lg-3 col-md-6">
 							<div class="single-cat-list">
-							  <img src="img/ct4.jpg" alt="" class="img-fluid">
+							  <img src="/assets/img/ct4.jpg" alt="" class="img-fluid">
 							  <div class="overlay">
 							    <div class="text">Siamese Cat</div>
 							  </div>
@@ -61,7 +61,7 @@
 						</div>	
 						<div class="col-lg-3 col-md-6">
 							<div class="single-cat-list">
-							  <img src="img/ct5.jpg" alt="" class="img-fluid">
+							  <img src="/assets/img/ct5.jpg" alt="" class="img-fluid">
 							  <div class="overlay">
 							    <div class="text">Siamese Cat</div>
 							  </div>
@@ -69,7 +69,7 @@
 						</div>
 						<div class="col-lg-3 col-md-6">
 							<div class="single-cat-list">
-							  <img src="img/ct6.jpg" alt="" class="img-fluid">
+							  <img src="/assets/img/ct6.jpg" alt="" class="img-fluid">
 							  <div class="overlay">
 							    <div class="text">Siamese Cat</div>
 							  </div>
@@ -77,7 +77,7 @@
 						</div>
 						<div class="col-lg-3 col-md-6">
 							<div class="single-cat-list">
-							  <img src="img/ct7.jpg" alt="" class="img-fluid">
+							  <img src="/assets/img/ct7.jpg" alt="" class="img-fluid">
 							  <div class="overlay">
 							    <div class="text">Siamese Cat</div>
 							  </div>
@@ -85,7 +85,7 @@
 						</div>
 						<div class="col-lg-3 col-md-6">
 							<div class="single-cat-list">
-							  <img src="img/ct8.jpg" alt="" class="img-fluid">
+							  <img src="/assets/img/ct8.jpg" alt="" class="img-fluid">
 							  <div class="overlay">
 							    <div class="text">Siamese Cat</div>
 							  </div>
@@ -95,25 +95,48 @@
 				</div>	
 			</section>
 			<!-- End cat-list Area -->
-					
 
+			  <section class="testomial-area section-gap" id="testimonail">
+				  <div class="container">
+					  <div class="row d-flex justify-content-center">
+						  <div class="menu-content pb-60 col-lg-8">
+							  <div class="title text-center">
+								  <h1 class="mb-10">Our Service</h1>
+							  </div>
+						  </div>
+					  </div>
+					  <div class="row">
+						  <div class="active-testimonial-carusel">
+							  <th:block th:each="careType : ${careTypes}">
+								  <div class="single-testimonial item">
+									  <img class="mx-auto" th:src="${careType.image}" height="200px" th:width="240px" alt="">
+									  <p class="desc" th:text="${careType.description}"></p>
+									  <h4 th:text="${careType.name}"></h4>
+									  <p>
+										  CEO at Google
+									  </p>
+								  </div>
+							  </th:block>
+						  </div>
+					  </div>
+				  </div>
+			  </section>
 			<!-- Start calltoaction Area -->
-			<section class="calltoaction-area section-gap relative">
-				<div class="container">
-					<div class="overlay overlay-bg"></div>						
-					<div class="row align-items-center justify-content-center">
-						<h1 class="text-white">Want to help? Become a Volunteer</h1>
-						<p class="text-white">
-							Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-							Ut enim ad minim. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor.
-						</p>
-						<div class="buttons d-flex flex-row">
-							<a href="#" class="primary-btn text-uppercase">View pdf details</a>
-							<a href="#" class="primary-btn text-uppercase">Register now</a>
-						</div>
-					</div>
-				</div>	
-			</section>
+			  <section class="calltoaction-area section-gap relative">
+				  <div class="overlay overlay-bg"></div>
+				  <div class="container">
+
+					  <div class="row align-items-center justify-content-center">
+						  <h1 class="text-white">Poopet is here to Support Every<br>
+							  Aspect of your Pet’s Life
+						  </h1>
+						  <h5>Looking for proessional groomer or trainer?</h5>
+						  <div class="buttons d-flex flex-row">
+							  <a href="/contact" class="primary-btn text-uppercase">Contact Us</a>
+						  </div>
+					  </div>
+				  </div>
+			  </section>
 			<!-- End calltoaction Area -->													
 				
 			<!-- start footer Area -->		

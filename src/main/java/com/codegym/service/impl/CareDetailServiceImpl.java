@@ -28,7 +28,7 @@ public class CareDetailServiceImpl implements CareDetailService {
 
     @Override
     public void remove(Long id) {
-        careDetailRepository.deleteById(id);
+        careDetailRepository.softDelete(id);
     }
 
     @Override

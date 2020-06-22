@@ -1,13 +1,7 @@
 package com.codegym.controller.admin;
 
-import com.codegym.model.Customer;
-import com.codegym.model.MyTeam;
-import com.codegym.model.Pet;
-import com.codegym.model.PetKind;
-import com.codegym.service.CustomerService;
-import com.codegym.service.MyTeamService;
-import com.codegym.service.PetKindService;
-import com.codegym.service.PetService;
+import com.codegym.model.*;
+import com.codegym.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -27,6 +21,11 @@ public class PetController {
     private PetService petService;
 
     @Autowired
+    private PetTypeService petTypeService;
+    @ModelAttribute("petTypes")
+    public Page<PetType> petTypes(Pageable pageable) {return petTypeService.findAll(pageable);}
+
+    @Autowired
     private CustomerService customerService;
     @ModelAttribute("customers")
     public Page<Customer> customers(Pageable pageable){
@@ -43,6 +42,12 @@ public class PetController {
     @ModelAttribute("myTeams")
     public Page<MyTeam> myTeams(Pageable pageable){return myTeamService.findAll(pageable);}
 
+    @Autowired
+    private CareDetailService careDetailService;
+    @ModelAttribute("careDetails")
+    public Page<CareDetail> careDetails(Pageable pageable){return careDetailService.findAll(pageable);
+    }
+
     @GetMapping(value = "/create-pet", produces = "application/json;charset=UTF-8")
     public ModelAndView showFormPet() {
         ModelAndView modelAndView = new ModelAndView("admin/pet/create");
@@ -53,13 +58,16 @@ public class PetController {
     @PostMapping(value = "/create-pet", produces = "application/json;charset=UTF-8")
     public ModelAndView savePet(@Valid @ModelAttribute("pet")Pet pet, BindingResult bindingResult){
         new Pet().validate(pet, bindingResult);
+//        new Customer().validate(customer, bindingResult);
         if (bindingResult.hasFieldErrors()){
             ModelAndView modelAndView = new ModelAndView("admin/pet/create");
             return modelAndView;
         } else {
+//            customerService.save(customer);
             petService.save(pet);
             ModelAndView modelAndView = new ModelAndView("admin/pet/create");
             modelAndView.addObject("pet", pet);
+//            modelAndView.addObject("customer", customer);`
             modelAndView.addObject("message","New Pet create successfully");
             return modelAndView;
         }
@@ -110,6 +118,6 @@ public class PetController {
     @PostMapping(value = "/delete-pet", produces = "application/json;charset=UTF-8")
     public String deletePet(@ModelAttribute("pet") Pet pet){
         petService.remove(pet.getId());
-        return "redirect:tables";
+        return "redirect:petlist";
     }
 }

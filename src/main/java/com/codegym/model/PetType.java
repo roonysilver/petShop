@@ -15,6 +15,18 @@ public class PetType implements Validator {
 
     private Long id;
     private String name;
+    private boolean softDelete;
+
+    public PetType() {
+    }
+
+    public boolean isSoftDelete() {
+        return softDelete;
+    }
+
+    public void setSoftDelete(boolean softDelete) {
+        this.softDelete = softDelete;
+    }
 
     @OneToMany(targetEntity = PetKind.class)
     private List<PetKind> petKinds;
@@ -53,7 +65,8 @@ public class PetType implements Validator {
     PetType petType = (PetType) target;
     String petTypeName = petType.getName();
     ValidationUtils.rejectIfEmpty(errors,"name", "petTypeName.empty");
-        if (!petTypeName.matches("^$|[A-Za-z]*$")){
+        if (!petTypeName.matches(
+                "^[a-zA-ZÀ-ỹ-\\s]+$")){
             errors.rejectValue("name","petTypeName.matches");
         }
     }

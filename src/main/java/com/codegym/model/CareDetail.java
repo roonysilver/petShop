@@ -18,6 +18,19 @@ public class CareDetail implements Validator {
     private String name;
     private String price;
     private String time;
+    private boolean softDelete;
+
+    public CareDetail() {
+    }
+
+    public boolean isSoftDelete() {
+        return softDelete;
+    }
+
+    public void setSoftDelete(boolean softDelete) {
+        this.softDelete = softDelete;
+    }
+
     @OneToMany(targetEntity = CareDetailHasPetDetail.class)
     private List<CareDetailHasPetDetail> careDetailHasPetDetails;
 
@@ -92,7 +105,7 @@ public class CareDetail implements Validator {
         if (!careDetailPrice.matches("^$|[0-9]*$")) {
             errors.rejectValue("price", "careDetailPrice.matches");
         }
-        if (!careDetailName.matches("^$|[A-Za-z]*$")) {
+        if (!careDetailName.matches("^[a-zA-ZÀ-ỹ-\\s]+$")) {
             errors.rejectValue("name", "careDetailName.matches");
         }
     }

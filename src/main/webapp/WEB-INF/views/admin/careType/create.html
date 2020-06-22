@@ -29,11 +29,27 @@
                         </th:block>
                         <form action="#" th:action="@{/create-careType}" th:object="${careType}" method="POST">
                             <div class="row">
-                                <div class="col-md-5 pr-1">
+                                <div class="col-md-6 pr-1">
                                     <div class="form-group">
                                         <label>Care Type</label>
                                         <input type="text" class="form-control" th:field="*{name}"/>
                                         <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <input type="text" class="form-control" th:field="*{description}"/>
+                                        <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Description Error</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Care Type Image</label>
+                                        <input type="text" class="form-control" th:field="*{image}"/>
+                                        <div th:if="${#fields.hasErrors('image')}" th:errors="*{image}">Name Error</div>
                                     </div>
                                 </div>
                             </div>

@@ -28,11 +28,11 @@ public class PetTypeServiceImpl implements PetTypeService {
 
     @Override
     public void remove(Long id) {
-        petTypeRepository.deleteById(id);
+        petTypeRepository.softDelete(id);
     }
 
     @Override
     public Page<PetType> findAllByPetTypeName(String name, Pageable pageable) {
-        return petTypeRepository.findAllByPetTypeName(name, pageable);
+        return petTypeRepository.findAllByPetTypeName(name,pageable);
     }
 }

@@ -17,6 +17,24 @@ public class Customer implements Validator {
     private Long id;
     private String name;
     private String number;
+    private String description;
+    private boolean softDelete;
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean isSoftDelete() {
+        return softDelete;
+    }
+
+    public void setSoftDelete(boolean softDelete) {
+        this.softDelete = softDelete;
+    }
 
     @OneToMany(targetEntity = Pet.class)
     private List<Pet> pets;
@@ -65,6 +83,8 @@ public class Customer implements Validator {
         String customerName = customer.getName();
         String number = customer.getNumber();
         ValidationUtils.rejectIfEmpty(errors, "name", "name.empty");
+        ValidationUtils.rejectIfEmpty(errors, "number", "number.empty");
+
         if (number.length() >11 || number.length() < 10){
             errors.rejectValue("number", "number.length");
         }
@@ -74,8 +94,8 @@ public class Customer implements Validator {
         if (!number.matches("(^$|[0-9]*$)")){
             errors.rejectValue("number", "number.matches");
         }
-        if (!customerName.matches("^$|[A-Za-z]*$")){
-            errors.rejectValue("name","name.matches");
+        if (!customerName.matches("^[a-zA-ZÀ-ỹ-\\s]+$")){
+            errors.rejectValue("name","customerName.matches");
         }
     }
 }

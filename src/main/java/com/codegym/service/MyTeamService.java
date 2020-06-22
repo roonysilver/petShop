@@ -16,5 +16,4 @@ public interface MyTeamService {
 
     Page<MyTeam> findAllByTeamName(String name, Pageable pageable);
 
-    Page<MyTeam> findAllByTeamNumber(String number, Pageable pageable);
 }

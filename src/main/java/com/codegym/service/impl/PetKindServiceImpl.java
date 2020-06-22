@@ -29,7 +29,7 @@ public class PetKindServiceImpl implements PetKindService {
 
     @Override
     public void remove(Long id) {
-        petKindRepository.deleteById(id);
+        petKindRepository.softDelete(id);
     }
 
     @Override

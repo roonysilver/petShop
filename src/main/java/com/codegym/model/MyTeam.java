@@ -15,7 +15,21 @@ public class MyTeam implements Validator {
 
     private Long id;
     private String name;
-    private String number;
+    private String position;
+    private String description;
+    private String image;
+    private boolean softDelete;
+
+    public MyTeam() {
+    }
+
+    public boolean isSoftDelete() {
+        return softDelete;
+    }
+
+    public void setSoftDelete(boolean softDelete) {
+        this.softDelete = softDelete;
+    }
 
     @OneToMany(targetEntity = PetDetailHasMyTeam.class)
     private Set<PetDetailHasMyTeam> PetDetailHasMyTeam;
@@ -26,6 +40,30 @@ public class MyTeam implements Validator {
 
     public void setPetDetailHasMyTeam(Set<com.codegym.model.PetDetailHasMyTeam> petDetailHasMyTeam) {
         PetDetailHasMyTeam = petDetailHasMyTeam;
+    }
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Long getId() {
@@ -44,13 +82,6 @@ public class MyTeam implements Validator {
         this.name = name;
     }
 
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
-    }
 
     @Override
     public boolean supports(Class<?> clazz) {
@@ -60,20 +91,12 @@ public class MyTeam implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         MyTeam myTeam = (MyTeam) target;
-        String teamNumber = myTeam.getNumber();
+
         String teamName = myTeam.getName();
-        ValidationUtils.rejectIfEmpty(errors, "number", "teamNumber.empty");
+
         ValidationUtils.rejectIfEmpty(errors, "name", "teamName.empty");
-        if (teamNumber.length() >11 || number.length() < 10){
-            errors.rejectValue("number", "teamNumber.length");
-        }
-        if (!teamNumber.startsWith("0")){
-            errors.rejectValue("number", "teamNumber.startsWith");
-        }
-        if (!teamNumber.matches("(^$|[0-9]*$)")){
-            errors.rejectValue("number", "teamNumber.matches");
-        }
-        if (!teamName.matches("^$|[A-Za-z]*$")){
+
+        if (!teamName.matches("^[a-zA-ZÀ-ỹ-\\s]+$")){
             errors.rejectValue("name","teamName.matches");
         }
     }

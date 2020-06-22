@@ -16,6 +16,40 @@ public class CareType implements Validator {
 
     private Long id;
     private String name;
+    private String description;
+    private String image;
+    private boolean softDelete;
+
+    public CareType() {
+    }
+
+    public boolean isSoftDelete() {
+        return softDelete;
+    }
+
+    public void setSoftDelete(boolean softDelete) {
+        this.softDelete = softDelete;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public void setCareDetails(Set<CareDetail> careDetails) {
+        this.careDetails = careDetails;
+    }
 
     @OneToMany(targetEntity = CareDetail.class)
     private Set<CareDetail> careDetails;
@@ -54,7 +88,7 @@ public class CareType implements Validator {
         CareType careType = (CareType) target;
         String careTypeName = careType.getName();
         ValidationUtils.rejectIfEmpty(errors, "name", "careTypeName.empty");
-        if (!careTypeName.matches("^$|[A-Za-z]*$")){
+        if (!careTypeName.matches("^[a-zA-ZÀ-ỹ-\\s]+$")){
             errors.rejectValue("name","careTypeName.matches");
         }
     }

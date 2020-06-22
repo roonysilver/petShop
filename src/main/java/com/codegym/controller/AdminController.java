@@ -34,6 +34,31 @@ public class AdminController {
         return "admin/dashboard";
     }
 
+    @GetMapping(value = "/petlist", produces = "application/json;charset=UTF-8" )
+    public ModelAndView petList(@RequestParam("s") Optional<String> s, Pageable pageable){
+        Page<Pet> pets;
+        Page<Pet> pets1;
+        Page<Pet> pets2;
+        Page<Pet> pets3;
+        if (s.isPresent()){
+            pets = petService.findAllByPetName(s.get(), pageable);
+            pets1 = petService.findAllByPetAge(s.get(), pageable);
+            pets2 = petService.findAllByPetWeight(s.get(), pageable);
+            pets3 = petService.findAllByPetColor(s.get(), pageable);
+        }else {
+            pets = petService.findAll(pageable);
+            pets1 = petService.findAll(pageable);
+            pets2 = petService.findAll(pageable);
+            pets3 = petService.findAll(pageable);
+        }
+        ModelAndView modelAndView = new ModelAndView("admin/pet/list");
+        modelAndView.addObject("pets", pets);
+        modelAndView.addObject("pets", pets1);
+        modelAndView.addObject("pets", pets2);
+        modelAndView.addObject("pets", pets3);
+        return modelAndView;
+    }
+
     @GetMapping(value = "/tables", produces = "application/json;charset=UTF-8")
     public ModelAndView showAdmin(@RequestParam("s") Optional<String> s, Pageable pageable){
         Page<PetType> petTypes;
@@ -47,10 +72,7 @@ public class AdminController {
         Page<CareDetail> careDetails;
         Page<CareDetail> careDetails1;
         Page<CareDetail> careDetails2;
-        Page<Pet> pets;
-        Page<Pet> pets1;
-        Page<Pet> pets2;
-        Page<Pet> pets3;
+
         if(s.isPresent()){
             petTypes = petTypeService.findAllByPetTypeName(s.get(), pageable);
             petKinds = petKindService.findAllByPetKindName(s.get(), pageable);
@@ -58,15 +80,11 @@ public class AdminController {
             customers = customerService.findAllByCustomerName(s.get(), pageable);
             customers1 = customerService.findAllByCustomerNumber(s.get(), pageable);
             myTeams = myTeamService.findAllByTeamName(s.get(), pageable);
-            myTeams1 = myTeamService.findAllByTeamNumber(s.get(), pageable);
             careTypes = careTypeService.findAllByCareTypeName(s.get(), pageable);
             careDetails = careDetailService.findAllByCareDetailName(s.get(), pageable);
             careDetails1 = careDetailService.findAllByCareDetailPrice(s.get(), pageable);
             careDetails2 = careDetailService.findAllByCareDetailTime(s.get(), pageable);
-            pets = petService.findAllByPetName(s.get(), pageable);
-            pets1 = petService.findAllByPetAge(s.get(), pageable);
-            pets2 = petService.findAllByPetWeight(s.get(), pageable);
-            pets3 = petService.findAllByPetColor(s.get(), pageable);
+
         }else {
             petTypes = petTypeService.findAll(pageable);
             petKinds = petKindService.findAll(pageable);
@@ -79,10 +97,7 @@ public class AdminController {
             careDetails = careDetailService.findAll(pageable);
             careDetails1 = careDetailService.findAll(pageable);
             careDetails2 = careDetailService.findAll(pageable);
-            pets = petService.findAll(pageable);
-            pets1 = petService.findAll(pageable);
-            pets2 = petService.findAll(pageable);
-            pets3 = petService.findAll(pageable);
+
         }
         ModelAndView modelAndView = new ModelAndView("admin/tables");
         modelAndView.addObject("petTypes", petTypes);
@@ -91,15 +106,10 @@ public class AdminController {
         modelAndView.addObject("customers", customers);
         modelAndView.addObject("customers", customers1);
         modelAndView.addObject("myTeams", myTeams);
-        modelAndView.addObject("myTeams", myTeams1);
         modelAndView.addObject("careTypes", careTypes);
         modelAndView.addObject("careDetails", careDetails);
         modelAndView.addObject("careDetails", careDetails1);
         modelAndView.addObject("careDetails", careDetails2);
-        modelAndView.addObject("pets", pets);
-        modelAndView.addObject("pets", pets1);
-        modelAndView.addObject("pets", pets2);
-        modelAndView.addObject("pets", pets3);
         return modelAndView;
     }
 }

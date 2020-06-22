@@ -86,7 +86,7 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
         ThymeleafViewResolver viewResolver = new ThymeleafViewResolver();
         viewResolver.setTemplateEngine(templateEngine());
         viewResolver.setCharacterEncoding("UTF-8");
-        viewResolver.setContentType("text/html; charset=utf-8");
+        viewResolver.setContentType("text/html; charset=UTF-8");
         return viewResolver;
     }
     @Bean
@@ -119,11 +119,9 @@ public class ApplicationConfig extends WebMvcConfigurerAdapter implements Applic
     public DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/news-app-db?useUnicode=true&characterEncoding=UTF-8" +
-                "&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/animal");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/animal?useUnicode=true&characterEncoding=UTF-8");
         dataSource.setUsername( "root" );
-        dataSource.setPassword( "rinkute12345" );
+        dataSource.setPassword( "0906424280" );
         return dataSource;
     }
 

@@ -31,14 +31,14 @@ public class CareDetailController {
     }
 
 
-    @GetMapping(value = "/create-careDetail", produces = "application/json;charset=UTF-8")
+    @GetMapping(value = "/create-careDetail")
     public ModelAndView showFormCareDetail() {
         ModelAndView modelAndView = new ModelAndView("admin/careDetail/create");
         modelAndView.addObject("careDetail", new CareDetail());
         return modelAndView;
     }
 
-    @PostMapping(value = "/create-careDetail", produces = "application/json;charset=UTF-8")
+    @PostMapping(value = "/create-careDetail")
     public ModelAndView saveCareDetail(@Valid @ModelAttribute("careDetail")CareDetail careDetail, BindingResult bindingResult){
         new CareDetail().validate(careDetail, bindingResult);
         if (bindingResult.hasFieldErrors()){

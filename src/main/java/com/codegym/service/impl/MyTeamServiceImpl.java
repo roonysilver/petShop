@@ -28,17 +28,12 @@ public class MyTeamServiceImpl implements MyTeamService {
 
     @Override
     public void remove(Long id) {
-        myTeamRepository.deleteById(id);
+        myTeamRepository.softDelete(id);
     }
 
     @Override
     public Page<MyTeam> findAllByTeamName(String name, Pageable pageable) {
         return myTeamRepository.findAllByTeamName(name, pageable);
-    }
-
-    @Override
-    public Page<MyTeam> findAllByTeamNumber(String number, Pageable pageable) {
-        return myTeamRepository.findAllByTeamNumber(number, pageable);
     }
 
 }

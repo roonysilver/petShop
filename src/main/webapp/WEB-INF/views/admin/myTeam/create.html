@@ -29,16 +29,34 @@
                         </th:block>
                         <form action="#" th:action="@{/create-myTeam}" th:object="${myTeam}" method="POST">
                             <div class="row">
-                                <div class="col-md-5 pr-1">
+                                <div class="col-md-6 pr-1">
                                     <div class="form-group">
                                         <label>MyTeam Name</label>
                                         <input type="text" class="form-control" th:field="*{name}"/>
                                         <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
                                     </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
                                     <div class="form-group">
-                                        <label>Phone </label>
-                                        <input type="text" class="form-control" th:field="*{number}"/>
-                                        <div th:if="${#fields.hasErrors('number')}" th:errors="*{number}">Name Error</div>
+                                        <label>Position </label>
+                                        <input type="text" class="form-control" th:field="*{position}"/>
+                                        <div th:if="${#fields.hasErrors('position')}" th:errors="*{position}">Name Error</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <input type="text" class="form-control" th:field="*{description}"/>
+                                        <div th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Name Error</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Image</label>
+                                        <input type="text" class="form-control" th:field="*{image}"/>
+                                        <div th:if="${#fields.hasErrors('image')}" th:errors="*{image}">Name Error</div>
                                     </div>
                                 </div>
                             </div>

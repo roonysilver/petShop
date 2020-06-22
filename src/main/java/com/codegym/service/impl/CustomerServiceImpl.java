@@ -28,7 +28,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void remove(Long id) {
-        customerRepository.deleteById(id);
+        customerRepository.softDelete(id);
     }
 
     @Override

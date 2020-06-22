@@ -18,29 +18,103 @@
             <div class="col-md-12">
                 <div class="card card-user">
                     <div class="card-header">
-                        <h5 class="card-title">Update Pet Type</h5>
+                        <h5 class="card-title">Edit Pet</h5>
                     </div>
                     <div class="container">
-                        <button type="button" class="btn btn-primary"><a href="/tables" style="color: white">Pet Type List</a></button>
+                        <button type="button" class="btn btn-primary btn-round"><a href="/petlist" style="color: white">Pet List</a></button>
                     </div>
                     <div class="card-body">
                         <th:block th:if="${message}">
                             <p th:text="${message}"></p>
                         </th:block>
-                        <form action="#" th:action="@{/edit-petType}" th:object="${petType}" method="POST">
-                            <input th:type="hidden" name="id" th:field="*{id}">
+                        <form action="#" th:action="@{/edit-pet}" th:object="${pet}" method="POST">
                             <div class="row">
-                                <div class="col-md-5 pr-1">
+                                <div class="col-md-6 pr-1">
                                     <div class="form-group">
-                                        <label>Pet Type Name</label>
-                                        <input type="text" class="form-control" th:field="*{name}"/>
+                                        <label>Pet Name</label>
+                                        <input type="text" class="form-control" th:field="*{name}">
                                         <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Name Error</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Color</label>
+                                        <input type="text" class="form-control" th:field="*{color}" >
+                                        <div th:if="${#fields.hasErrors('color')}" th:errors="*{color}">Name Error</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 pr-1">
+                                    <div class="form-group">
+                                        <label>Age</label>
+                                        <input type="text" class="form-control" th:field="*{age}">
+                                        <div th:if="${#fields.hasErrors('age')}" th:errors="*{age}">Name Error</div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 pl-1">
+                                    <div class="form-group">
+                                        <label>Weight</label>
+                                        <input type="text" class="form-control" th:field="*{weight}">
+                                        <div th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}">Name Error</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <label>Customer</label>
+                                        <select th:field="*{customer}">
+                                            <option th:each="p : ${customers}" th:value="${p.id}" th:text="${p.name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4"  style="text-align: center; margin: auto">
+                                    <div class="form-group">
+                                        <label>Number</label>
+                                        <select th:field="*{customer}">
+                                            <option th:each="p : ${customers}" th:value="${p.id}" th:text="${p.number}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <label>Care Type</label>
+                                        <select th:field="*{careDetailHasPetDetail}">
+                                            <option th:each="c : ${careDetails}" th:value="${c.id}" th:text="${c.name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <label>Pet Kind</label>
+                                        <select th:field="*{petKind}">
+                                            <option th:each="p : ${petKinds}" th:value="${p.id}" th:text="${p.name}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4"  style="text-align: center; margin: auto">
+                                    <div class="form-group">
+                                        <label>Status</label>
+                                        <select th:field="*{petKind}">
+                                            <option th:each="p : ${petKinds}" th:value="${p.id}" th:text="${p.status}"></option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 pr-1">
+                                    <div class="form-group">
+                                        <label>Employee</label>
+                                        <select th:field="*{petDetailHasMyTeam}">
+                                            <option th:each="p : ${myTeams}" th:value="${p.id}" th:text="${p.name}"></option>
+                                        </select>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="update ml-auto mr-auto">
-                                    <button type="submit" class="btn btn-primary btn-round" value="Update">Update</button>
+                                    <button type="submit" class="btn btn-primary btn-round" >Update</button>
                                 </div>
                             </div>
                         </form>

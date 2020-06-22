@@ -1,9 +1,11 @@
 package com.codegym.repository;
 
+import com.codegym.model.Customer;
 import com.codegym.model.PetKind;
 import com.codegym.model.PetType;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
@@ -16,4 +18,13 @@ public interface PetKindRepository extends PagingAndSortingRepository<PetKind,Lo
 
     @Query(value = "select e from PetKind e where e.status = ?1")
     Page<PetKind> findAllByPetKindStatus(String status, Pageable pageable);
+
+    @Override
+    @Query("select e from PetKind e where e.softDelete=false")
+    Page<PetKind> findAll(Pageable pageable);
+
+    //Soft delete.
+    @Query("update PetKind e set e.softDelete=true where e.id=?1")
+    @Modifying
+    void softDelete(Long id);
 }

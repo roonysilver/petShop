@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="adminLayout::head">
+</head>
+
+<body class="">
+<div class="wrapper ">
+    <div th:replace="adminLayout::slidebar"></div>
+    <div class="main-panel">
+        <nav th:replace="adminLayout::navbar"></nav>
+        <!-- End Navbar -->
+        <!-- <div class="panel-header panel-header-sm">
+
+
+  </div> -->
+        <div class="content">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h2 class="card-title">Pet</h2>
+                    </div>
+                    <div class="container">
+                        <button type="button" class="btn btn-primary btn-round"><a href="/create-pet" style="color: white">Create new Pet</a></button>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead class=" text-primary">
+                                <th>
+                                    Name
+                                </th>
+                                <th>
+                                    Age
+                                </th>
+                                <th>
+                                    Color
+                                </th>
+                                <th>
+                                    Weight
+                                </th>
+                                <th>Type</th>
+                                <th>
+                                    Status
+                                </th>
+                                <th>
+                                    Customer Name
+                                </th>
+                                <th>
+                                    Number
+                                </th>
+                                <th>
+                                    Edit
+                                </th>
+                                <th>
+                                    Delete
+                                </th>
+                                </thead>
+                                <tbody>
+                                <div class="container">
+                                    <th:block th:each="pet : ${pets}">
+                                        <tr>
+                                            <td th:text="${pet.name}"></td>
+                                            <td th:text="${pet.age}"></td>
+                                            <td th:text="${pet.color}"></td>
+                                            <td th:text="${pet.weight}"></td>
+                                            <td th:text="${pet.petKind.name}"></td>
+                                            <td th:text="${pet.petKind.status}"></td>
+                                            <td th:text="${pet.customer.name}"></td>
+                                            <td th:text="${pet.customer.number}"></td>
+                                            <td><a th:href="@{/edit-pet/__${pet.id}__ }"><i class="fa fa-edit" style="font-size: 28px"></i></a></td>
+                                            <td><a th:href="@{/delete-pet/__${pet.id}__ }"><i class="fa fa-trash" style="font-size: 28px" ></i></a></td>
+                                        </tr>
+                                    </th:block>
+                                </div>
+                                </tbody>
+                            </table>
+                            <div>
+                                <a th:href="@{'/tables'(page=${pets.number - 1})}" th:if="${pets.hasPrevious()}">Previous</a>
+                                <span th:text="${pets.number + 1}"></span>/<span th:text="${pets.totalPages}"></span>
+                                <a th:href="@{'/tables'(page=${pets.number + 1})}" th:if="${pets.hasNext()}">Next</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <footer class="footer footer-black  footer-white ">
+        <div class="container-fluid">
+            <div class="row">
+                <nav class="footer-nav">
+                    <ul>
+                        <li>
+                            <a href="https://www.creative-tim.com" target="_blank">Creative Tim</a>
+                        </li>
+                        <li>
+                            <a href="http://blog.creative-tim.com/" target="_blank">Blog</a>
+                        </li>
+                        <li>
+                            <a href="https://www.creative-tim.com/license" target="_blank">Licenses</a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="credits ml-auto">
+              <span class="copyright">
+                ©
+                <script>
+                  document.write(new Date().getFullYear())
+                </script>, made with <i class="fa fa-heart heart"></i> by Creative Tim
+              </span>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+</div>
+<!--   Core JS Files   -->
+<script src="/assets/js/core/jquery.min.js"></script>
+<script src="/assets/js/core/popper.min.js"></script>
+<script src="/assets/js/core/bootstrap.min.js"></script>
+<script src="/assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<!--  Google Maps Plugin    -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!-- Chart JS -->
+<script src="/assets/js/plugins/chartjs.min.js"></script>
+<!--  Notifications Plugin    -->
+<script src="/assets/js/plugins/bootstrap-notify.js"></script>
+<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="/assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
+<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+<script src="/assets/demo/demo.js"></script>
+</body>
+
+</html>

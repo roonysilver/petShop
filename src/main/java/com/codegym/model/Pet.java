@@ -18,6 +18,18 @@ public class Pet implements Validator {
     private Long age;
     private String weight;
     private String color;
+    private boolean softDelete;
+
+    public Pet() {
+    }
+
+    public boolean isSoftDelete() {
+        return softDelete;
+    }
+
+    public void setSoftDelete(boolean softDelete) {
+        this.softDelete = softDelete;
+    }
 
     @ManyToOne
     @JoinColumn(name = "customer_id")
@@ -120,8 +132,12 @@ public class Pet implements Validator {
         ValidationUtils.rejectIfEmpty(errors, "name", "petName.empty");
         ValidationUtils.rejectIfEmpty(errors, "weight", "petWeight.empty");
         ValidationUtils.rejectIfEmpty(errors, "color", "petColor.empty");
-        if (!petName.matches("^$|[A-Za-z]\\s*$")){
+        ValidationUtils.rejectIfEmpty(errors, "age", "petAge.empty");
+        if (!petName.matches("^[a-zA-ZÀ-ỹ-\\s]+$")){
             errors.rejectValue("name","petName.matches");
+        }
+        if (!petWeight.matches("(^$|[0-9]*$)")){
+            errors.rejectValue("weight","petWeight.matches");
         }
     }
 }

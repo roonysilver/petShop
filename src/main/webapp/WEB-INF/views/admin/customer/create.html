@@ -29,7 +29,7 @@
                         </th:block>
                         <form action="#" th:action="@{/create-customer}" th:object="${customer}" method="POST">
                             <div class="row">
-                                <div class="col-md-5 pr-1">
+                                <div class="col-md-12 pr-1">
                                     <div class="form-group">
                                         <label>Customer Name</label>
                                         <input type="text" class="form-control" th:field="*{name}"/>
@@ -39,6 +39,10 @@
                                         <label>Phone </label>
                                         <input type="text" class="form-control" th:field="*{number}"/>
                                         <div th:if="${#fields.hasErrors('number')}" th:errors="*{number}">Name Error</div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea type="text" class="form-control" th:field="*{description}"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -96,6 +100,18 @@
 <script src="/assets/js/paper-dashboard.min.js?v=2.0.0" type="text/javascript"></script>
 <!-- Paper Dashboard DEMO methods, don't include it in your project! -->
 <script src="/assets/demo/demo.js"></script>
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.16/dist/summernote.min.js"></script>
+<script>
+    $('#description').summernote({
+        placeholder: 'Please Insert Text Here',
+        tabsize: 2,
+        height: 100
+    });
+</script>
 </body>
 
 </html>

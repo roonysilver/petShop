@@ -33,15 +33,9 @@
                 <div class="table-responsive">
                   <table class="table">
                     <thead class=" text-primary">
-                      <th>
-                        Name
-                      </th>
-                      <th>
-                        Edit
-                      </th>
-                      <th>
-                        Delete
-                      </th>
+                      <th>Name</th>
+                      <th>Edit</th>
+                      <th>Delete</th>
                     </thead>
                     <tbody>
                     <div class="container">
@@ -77,21 +71,11 @@
                 <div class="table-responsive">
                   <table class="table">
                     <thead class=" text-primary">
-                    <th>
-                      Name
-                    </th>
-                    <th>
-                      Status
-                    </th>
-                    <th>
-                      Type
-                    </th>
-                    <th>
-                      Edit
-                    </th>
-                    <th>
-                      Delete
-                    </th>
+                    <th>Name</th>
+                    <th>Status</th>
+                    <th>Type</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                     </thead>
                     <tbody>
                     <div class="container">
@@ -177,25 +161,21 @@
                 <div class="table-responsive">
                   <table class="table">
                     <thead class=" text-primary">
-                    <th>
-                      Name
-                    </th>
-                    <th>
-                      Number
-                    </th>
-                    <th>
-                      Edit
-                    </th>
-                    <th>
-                      Delete
-                    </th>
+                    <th>Name</th>
+                    <th>Position</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                     </thead>
                     <tbody>
                     <div class="container">
                       <th:block th:each="myteam : ${myTeams}">
                         <tr>
                           <td th:text="${myteam.name}"></td>
-                          <td th:text="${myteam.number}"></td>
+                          <td th:text="${myteam.position}"></td>
+                          <td th:text="${myteam.description}"></td>
+                          <td th:text="${myteam.image}"></td>
                           <td><a th:href="@{/edit-myTeam/__${myteam.id}__ }"><i class="fa fa-edit" style="font-size: 28px"></i></a></td>
                           <td><a th:href="@{/delete-myTeam/__${myteam.id}__ }"><i class="fa fa-trash" style="font-size: 28px" ></i></a></td>
                         </tr>
@@ -225,21 +205,19 @@
                 <div class="table-responsive">
                   <table class="table">
                     <thead class=" text-primary">
-                    <th>
-                      Name
-                    </th>
-                    <th>
-                      Edit
-                    </th>
-                    <th>
-                      Delete
-                    </th>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Image</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                     </thead>
                     <tbody>
                     <div class="container">
                       <th:block th:each="caretype : ${careTypes}">
                         <tr>
                           <td th:text="${caretype.name}"></td>
+                          <td th:text="${caretype.description}"></td>
+                          <td th:text="${caretype.image}"></td>
                           <td><a th:href="@{/edit-careType/__${caretype.id}__ }"><i class="fa fa-edit" style="font-size: 28px"></i></a></td>
                           <td><a th:href="@{/delete-careType/__${caretype.id}__ }"><i class="fa fa-trash" style="font-size: 28px" ></i></a></td>
                         </tr>
@@ -310,6 +288,7 @@
               </div>
             </div>
           </div>
+
       <footer class="footer footer-black  footer-white ">
         <div class="container-fluid">
           <div class="row">

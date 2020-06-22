@@ -28,7 +28,7 @@ public class PetServiceImpl implements PetService {
 
     @Override
     public void remove(Long id) {
-        petRepository.deleteById(id);
+        petRepository.softDelete(id);
     }
 
     @Override
